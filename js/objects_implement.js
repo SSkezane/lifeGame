@@ -42,7 +42,6 @@ class Resource extends GameObject {
  *  BreederReactor
  *---------------------------------------------------------------------------------------*/
 
-// 消費、期間、サイズ
 class BreederReactor  extends GameObject {
     static color = new Color(240,90,240);
     static timeLimit = 100;
