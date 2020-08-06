@@ -40,22 +40,21 @@ body {
 
 
 
-
-.titleC, .create {
+.modeC, .create {
     border: 2px solid rgb(127, 194, 239);
 }
-.titleB, .break {
+.modeB, .break {
     border: 2px solid rgb(214, 133, 176);
 }
-.tab-title {
+.mode-title {
     border-bottom: none;
     padding: .3em .5em;
     border-radius: .2em .2em 0 0;
     text-align: center;
-    display: table; 
+    display: table;
 }
-.tab-body > div {
-    width: 220%;
+.mode-body > div {
+    width: 110%;
     height: 250px;
     border-radius: .2em .2em .2em .2em;
 }
@@ -73,33 +72,33 @@ body {
     content: "";
     width: 100%;
 }
-.container .tab-title {
+.container .mode-title {
     position: relative;
     border-bottom: 2px solid transparent;
     top: 2px;
     left: 2px;
 }
-.container .tab-title:hover {
+.container .mode-title:hover {
     cursor: pointer;
 }
-.container .tab-body {
+.container .mode-body {
     order: 1;
 }
 /* tab's body init */
-.add-control .tab-body > div {
+.add-control .mode-body > div {
     display: none;
 }
 /* tabs control */
-.add-control #modeC:checked ~ .tab-body > .create {
+.add-control #modeC:checked ~ .mode-body > .create {
     display: block;
     padding-top: 2px;
 }
-.add-control #modeB:checked ~ .tab-body > .break {
+.add-control #modeB:checked ~ .mode-body > .break {
     display: block;
     padding-top: 2px;
 }
 /* selected tab's color change */
-.add-control .radio:checked + .tab-title {
+.add-control .radio:checked + .mode-title {
     color: #fff;
     border-bottom-color: #666;
 }
@@ -111,13 +110,13 @@ body {
 
 
 /* createの設定 */
-.itemC-name1, .bodyC1 {
+.itemC-name1, #bodyC1 {
     border: 2px solid rgb(127, 194, 239);
 }
-.itemC-name2, .bodyC2 {
+.itemC-name2, #bodyC2 {
     border: 2px solid rgb(214, 133, 176);
 }
-.itemC-name3, .bodyC3 {
+.itemC-name3, #bodyC3 {
     border: 2px solid rgb(219, 225, 89);
 }
 .itemC-name {
@@ -134,12 +133,11 @@ body {
     /*無理やり位置を整理*/
     position: relative;
     top: -75px;
-    left: -1px;
+    left: -3px;
     
-    width: 54%;
+    width: 70%;
     height: 200px;
     border-radius: 0 .3em .3em .3em;
-    padding: 1em;
     float: right;
 }
 /* ラジオボタンを非表示 */
@@ -164,13 +162,13 @@ body {
     display: none;
 }
 /* 選択された要素のみ表示 */
-.itemCreate #itemC1:checked ~ .itemC-body > .bodyC1 {
+.itemCreate #itemC1:checked ~ .itemC-body > #bodyC1 {
     display: block;
 }
-.itemCreate #itemC2:checked ~ .itemC-body > .bodyC2 {
+.itemCreate #itemC2:checked ~ .itemC-body > #bodyC2 {
     display: block;
 }
-.itemCreate #itemC3:checked ~ .itemC-body > .bodyC3 {
+.itemCreate #itemC3:checked ~ .itemC-body > #bodyC3 {
     display: block;
 }
 .itemCreate .radio:checked + .itemC-name {
@@ -183,13 +181,13 @@ body {
 
 
 /* breakの設定 */
-.itemB-name1, .bodyB1 {
+.itemB-name1, #bodyB1 {
     border: 2px solid rgb(127, 194, 239);
 }
-.itemB-name2, .bodyB2 {
+.itemB-name2, #bodyB2 {
     border: 2px solid rgb(214, 133, 176);
 }
-.itemB-name3, .bodyB3 {
+.itemB-name3, #bodyB3 {
     border: 2px solid rgb(219, 225, 89);
 }
 .itemB-name {
@@ -203,15 +201,14 @@ body {
 }
 .itemB-body > div {
 
-    /*無理やり位置を設定*/
+    /*無理やり位置を整理*/
     position: relative;
     top: -75px;
-    left: -1px;
-    width: 54%;
+    left: -3px;
     
+    width: 70%;
     height: 200px;
     border-radius: 0 .3em .3em .3em;
-    padding: 1em;
     float: right;
 }
 /* ラジオボタンを非表示 */
@@ -237,13 +234,13 @@ body {
 
 }
 /* 選択された要素のみ表示 */
-.itemBreak #itemB1:checked ~ .itemB-body > .bodyB1 {
+.itemBreak #itemB1:checked ~ .itemB-body > #bodyB1 {
     display: block;
 }
-.itemBreak #itemB2:checked ~ .itemB-body > .bodyB2 {
+.itemBreak #itemB2:checked ~ .itemB-body > #bodyB2 {
     display: block;
 }
-.itemBreak #itemB3:checked ~ .itemB-body > .bodyB3 {
+.itemBreak #itemB3:checked ~ .itemB-body > #bodyB3 {
     display: block;
 }
 .itemBreak .radio:checked + .itemB-name {
@@ -251,3 +248,4 @@ body {
     border-bottom-color: #fff;
     border-right-color: #666;
 }
+

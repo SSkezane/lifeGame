@@ -27,13 +27,20 @@ INFO.screenIID = 0;
 INFO.mouseout = false;
 INFO.mousePoint = null;
 INFO.mode = "information";
-INFO.mouseModes = ["information","createWall","breakWall"];
+INFO.mouseModes = ["information","create","break"];
 INFO.modeNumber = 0;
 INFO.modeChanging = false;
 INFO.mouseMode = INFO.mouseModes[INFO.modeNumber];
 INFO.MODE_INFORMATION = 0;
-INFO.MODE_CREATE_WALL = 1;
-INFO.MODE_DELETE_WALL = 2;
+INFO.MODE_CREATE = 1;
+INFO.MODE_DELETE = 2;
 INFO.MODE_CREATE_BR = 3;
 
 var MAP = new Map(INFO.canvas.width/INFO.cellSize,INFO.canvas.height/INFO.cellSize);
+
+/*
+タブクリックでモードが変化する仕様上、初期モードをinformationからcreateに変えたいが
+    INFO.mode = "create";
+    INFO.modeNumber = 1;
+とするとなぜかエラーになる、ゲームの進行的には問題はないと思われる
+*/

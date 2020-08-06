@@ -1,29 +1,20 @@
+/*
+アイテムの連続配置がタンクの上限判定の問題
+一度判定をクリアするとクリックを終えるまで無限にアイテムを配置できてしまう
+そもそも連続的に配置する必要があるか
 
-// select
-var select = document.querySelector("#item");
-var options = document.querySelectorAll("#item option");
-select.addEventListener("change",function(){
-    // 選択されたoption番号を取得
-    var selectedItem = options[this.selectedIndex].value;
-    switch(selectedItem){
-        case "breederReactor":
-            INFO.modeNumber = INFO.MODE_CREATE_BR;
-            break;
-        default : break;
-    }
-    this.selectedIndex = 0;
-});
+たまにupdatePutable();関連でエラーが出るがゲームの進行的には問題はない
+*/
+
 
 function keyDown(e){
     INFO.modeChanging = true;
+    
+    //shiftを押すと情報閲覧モードがセットされる。create・breakモードはタブ選択で変更
     if(e.shiftKey){
-        INFO.modeNumber++;
+        INFO.modeNumber = INFO.MODE_INFORMATION;
+        INFO.mouseMode = INFO.mouseModes[INFO.modeNumber];
     }
-    else if (e.altKey){
-        INFO.modeNumber--;
-    }
-    INFO.modeNumber = INFO.modeNumber%3;
-    INFO.mouseMode = INFO.mouseModes[INFO.modeNumber];
 }
 
 function onDown(e){
@@ -32,7 +23,7 @@ function onDown(e){
             INFO.clickedObj = MAP.find(INFO.mousePoint.x,INFO.mousePoint.y);
             MAP.highlight = new Point(INFO.mousePoint.x,INFO.mousePoint.y);
             break;
-        case INFO.MODE_CREATE_WALL:
+        case INFO.MODE_CREATE:
             if(Wall.isLimit()){
                 return;
             }
@@ -42,7 +33,8 @@ function onDown(e){
                     clearInterval(IID);
                     INFO.modeChanging = (INFO.modeChanging) ? false : true;   
                 }
-                Wall.create(INFO.mousePoint);
+                //各create・breakのitemタブ選択で、selectedItemC・Bが変更される
+                selectedItemC.create(INFO.mousePoint);
                 
                 // クリックを終えたとき、処理を終了
                 INFO.canvas.onmouseup = function(e){
@@ -50,21 +42,21 @@ function onDown(e){
                 }
             },20);
             break;
-        case INFO.MODE_DELETE_WALL:
-            console.log("delete mode");
+        case INFO.MODE_DELETE:
             var IID = setInterval(function(){
                 // カーソルがキャンパス外に出た || mouseModeが変更されていた
                 if(INFO.mouseout || INFO.modeChanging){
                     clearInterval(IID);
                     INFO.modeChanging = (INFO.modeChanging) ? false : true;
                 }
-                Wall.delete(INFO.mousePoint);
+                selectedItemB.delete(INFO.mousePoint);
                 // クリックを終えたとき、処理を終了
                 INFO.canvas.onmouseup = function(e){
                     if(e.button == 0) clearInterval(IID);
                 }
             },20);
             break;
+/*
         case INFO.MODE_CREATE_BR:
             if(INFO.tank < 30 || !INFO.putable) break;
             INFO.tank -= 30;
@@ -77,7 +69,7 @@ function onDown(e){
                     MAP.register(BR);
                 }
             }
-
+*/
             INFO.modeNumber = INFO.MODE_INFORMATION;
             INFO.bgContext.clearRect(0,0,INFO.canvas.width,INFO.canvas.height);
             break;
@@ -96,11 +88,11 @@ function onOver(e){
         case INFO.MODE_CREATE_BR:
             BreederReactor.highlight();
             break;
-        case INFO.MODE_CREATE_WALL:
-            Wall.highlight();
+        case INFO.MODE_CREATE:
+            selectedItemC.highlight();
             break;
-        case INFO.MODE_DELETE_WALL:
-            Wall.highlight();
+        case INFO.MODE_DELETE:
+            selectedItemB.highlight();
             break;
     }
     
@@ -113,18 +105,20 @@ function onMove(e){
     // Itemの設置場所をハイライトする
     INFO.bgContext.clearRect(0,0,INFO.canvas.width,INFO.canvas.height);
     switch(INFO.modeNumber){
+/*
         case INFO.MODE_CREATE_BR:
             BreederReactor.updatePutable();
             BreederReactor.highlight();
             break;
-        case INFO.MODE_CREATE_WALL:
-            Wall.updatePutable();
-            Wall.highlight();
+*/
+        case INFO.MODE_CREATE:
+            selectedItemC.updatePutable();
+            selectedItemC.highlight();
             break;
-        case INFO.MODE_DELETE_WALL:
-            Wall.updatePutable();
+        case INFO.MODE_DELETE:
+            selectedItemB.updatePutable();
             INFO.putable = (INFO.putable) ? false : true;
-            Wall.highlight();
+            selectedItemB.highlight();
     }
 }
 
