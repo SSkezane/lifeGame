@@ -5,58 +5,50 @@
 <body>
     <div id="app">
         <canvas id="canvas" width="640" height="480"></canvas>
-        <canvas id="background" width="640" height="480"></canvas>
-        <div id="informationBox">
-            <div id="info">
-                <form id="species">
-                    <input name="name" type="radio" value="Animal" checked="checked"> Animal　
-                    <input name="name" type="radio" value="Predator"> Predator
-                </form>
-                <form id="stageSelect">
-                    <input name="stageFile" type="file"/>
-                </form>
-            </div>
-            <div id="speed">
-                S <input id="gameSpeedSlider" type="range" name="speed" min="0" max="1000" oninput="INFO.gameSpeed = 1000 - this.value;" > F
-            </div>
-            <div class="container add-control">
-                <input type="radio" id="modeC" class="radio" name="tab" checked="checked"><label class="mode-title modeC" for="modeC">create</label>
-                <input type="radio" id="modeB" class="radio" name="tab" ><label class="mode-title modeB" for="modeB">break</label>
-                    <div class="mode-body">
-                        <div class="create">
-                            <div class="itemCreate">
-                            <input type="radio" id="itemC1" class="radio" name="itemC" checked="checked"><label class="itemC-name itemC-name1" for="itemC1">壁</label>
-                            <input type="radio" id="itemC2" class="radio" name="itemC" ><label class="itemC-name itemC-name2" for="itemC2">増殖炉</label>
-                            <input type="radio" id="itemC3" class="radio" name="itemC" ><label class="itemC-name itemC-name3" for="itemC3">その他</label>
-                                <div class="itemC-body">
-                                    <div class="bodyC" id="bodyC1">説明文</div>
-                                    <div class="bodyC" id="bodyC2">説明文</div>
-                                    <div class="bodyC" id="bodyC3">説明文</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="break">
-                            <div class="itemBreak">
-                            <input type="radio" id="itemB1" class="radio" name="itemB" checked="checked"><label class="itemB-name itemB-name1" for="itemB1">壁</label>
-                            <input type="radio" id="itemB2" class="radio" name="itemB" ><label class="itemB-name itemB-name2" for="itemB2">増殖炉</label>
-                            <input type="radio" id="itemB3" class="radio" name="itemB" ><label class="itemB-name itemB-name3" for="itemB3">その他</label>
-                                <div class="itemB-body">
-                                    <div class="bodyB" id="bodyB1">説明文</div>
-                                    <div class="bodyB" id="bodyB2">説明文</div>
-                                    <div class="bodyB" id="bodyB3">説明文</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>   
-        </div>
+        <canvas id="background" width="640" height="480"></canvas> 
+        
+        <div id="informationBox">       
+            <ul class="tab">
+              <li class="active">information</li>
+              <li>create</li>
+              <li>break</li>
+            </ul>
 
+            <div class="mode">
+              <ul class="show">
+                <div id="info">
+                    <form id="species">
+                        <input name="name" type="radio" value="Animal" checked="checked"> Animal　
+                        <input name="name" type="radio" value="Predator"> Predator
+                    </form>
+                    <form id="stageSelect">
+                        <input name="stageFile" type="file"/>
+                    </form>
+                </div>
+                <div id="speed">
+                    S <input id="gameSpeedSlider" type="range" name="speed" min="0" max="1000" oninput="INFO.gameSpeed = 1000 - this.value;" > F
+                </div>
+              </ul>
+              <ul>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+              </ul>
+              <ul>
+                <li>item</li>
+                <li>item</li>
+                <li>item</li>
+              </ul>
+            </div>
+        </div>
     </div>
+        
     <script src="lib/lib_core.js"></script>
     <script src="lib/lib_point.js"></script>
     <script src="lib/lib_color.js"></script>
     <script src="lib/lib_map.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="js/globals.js"></script>
     <script src="js/html_generator.js"></script>
     <script src="js/objects_interface.js"></script>
